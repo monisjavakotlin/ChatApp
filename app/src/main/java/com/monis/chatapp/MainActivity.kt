@@ -3,10 +3,13 @@ package com.monis.chatapp
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +22,15 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        var list=ArrayList<User>()
+        list.add(User("me","Welcome"))
+        list.add(User("lulu","Hi"))
+
+        var adp = MessageAdapter(this, list)
+        rv_chat.adapter=adp
+        rv_chat.layoutManager=LinearLayoutManager(this)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
