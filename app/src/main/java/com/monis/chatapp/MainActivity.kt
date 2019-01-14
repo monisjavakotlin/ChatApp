@@ -18,17 +18,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
+      /*  fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-        }
+        }*/
 
         var list=ArrayList<User>()
     /*    list.add(User("me","Welcome"))
         list.add(User("lulu","Hi"))*/
 
         var obj = ChatDB(this)
-        var db=obj.readableDatabase
+//        var db=obj.readableDatabase
+        var db=obj.writableDatabase
         var cur = db.rawQuery("select * from chat", null)
         cur.moveToFirst()
         while (cur.isAfterLast == false) {
@@ -40,6 +41,16 @@ class MainActivity : AppCompatActivity() {
         var adp = MessageAdapter(this, list)
         rv_chat.adapter=adp
         rv_chat.layoutManager=LinearLayoutManager(this)
+        rv_chat.scrollToPosition(list.size-1)
+
+        btn_chat.setOnClickListener {
+            db.execSQL("insert into chat values(?,?)",
+                arrayOf("me",et_chat.text.toString()))
+            list.add(User("me",et_chat.text.toString()))
+            adp.notifyDataSetChanged()
+            et_chat.setText("")
+            rv_chat.scrollToPosition(list.size-1)
+        }
 
     }
 
