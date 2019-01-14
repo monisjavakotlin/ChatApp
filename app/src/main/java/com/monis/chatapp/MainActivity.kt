@@ -24,8 +24,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         var list=ArrayList<User>()
-        list.add(User("me","Welcome"))
-        list.add(User("lulu","Hi"))
+    /*    list.add(User("me","Welcome"))
+        list.add(User("lulu","Hi"))*/
+
+        var obj = ChatDB(this)
+        var db=obj.readableDatabase
+        var cur = db.rawQuery("select * from chat", null)
+        cur.moveToFirst()
+        while (cur.isAfterLast == false) {
+            list.add(User(cur.getString(0), cur.getString(1)))
+            cur.moveToNext()
+
+        }
 
         var adp = MessageAdapter(this, list)
         rv_chat.adapter=adp
