@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/sugnup_confirm"
+            android:id="@+id/signup_confirm"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
             android:layout_marginTop="38dp" app:layout_constraintTop_toBottomOf="@+id/signup_password"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:hint="Confirm password"/>
@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/signup_button" android:layout_marginTop="68dp"
-            app:layout_constraintTop_toBottomOf="@+id/sugnup_confirm" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_confirm" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"/>
 </android.support.constraint.ConstraintLayout>
